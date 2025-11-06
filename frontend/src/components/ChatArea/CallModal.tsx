@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+// import React from "react";S
 import { Phone } from "lucide-react";
 
 interface Props {

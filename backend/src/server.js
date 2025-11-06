@@ -26,7 +26,11 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:5173", "http://localhost:5174"],
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "https://chitchat-1-2hft.onrender.com",
+    ],
     credentials: true,
   },
 });
@@ -44,7 +48,7 @@ io.on("connection", (socket) => {
   if (userId) {
     userSockets.set(userId, socket.id);
     socket.join(userId); // để có thể io.to(userId).emit()
-    
+
     // Emit user online status đến tất cả bạn bè
     io.emit("user_status_changed", {
       userId: userId.toString(),
@@ -71,7 +75,11 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:5174"],
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "https://chitchat-1-2hft.onrender.com",
+    ],
     credentials: true,
   })
 );
@@ -79,7 +87,10 @@ app.use(
 // Serve static files from uploads directory
 app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 // Serve static files for avatars specifically
-app.use("/uploads/avatars", express.static(path.join(__dirname, "../uploads/avatars")));
+app.use(
+  "/uploads/avatars",
+  express.static(path.join(__dirname, "../uploads/avatars"))
+);
 
 // =======================
 // 🌐 ROUTES

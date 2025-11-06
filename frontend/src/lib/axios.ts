@@ -6,7 +6,7 @@ const api = axios.create({
   baseURL:
     import.meta.env.MODE === "development"
       ? "http://localhost:5001/api" // khi chạy dev local
-      : "https://chitchat-txdo.onrender.com/api", // khi deploy trên Render
+      : "https://chitchat-1-2hft.onrender.com/api", // khi deploy trên Render
   withCredentials: true, // cần thiết nếu backend dùng cookie (refresh token)
 });
 
